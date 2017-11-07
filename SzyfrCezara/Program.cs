@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +18,53 @@ namespace SzyfrCezara
             string result = "";
             foreach (var sign in message.ToUpper())
             {
-                int index = GetIndex(sign) + flow;
-                if (index < keyArray.Length)
+                if (keyArray.Contains(sign))
                 {
-                    result += keyArray[index];
+
+                    int index = GetIndex(sign) + flow;
+                    if (index < keyArray.Length)
+                    {
+                        result += keyArray[index];
+                    }
+                    else
+                    {
+                        result += keyArray[index - keyArray.Length];
+                    } 
                 }
                 else
                 {
-                    result += keyArray[index - keyArray.Length];
+                    result += sign;
+                }
+            }
+            return result;
+        }
+
+        static string Decode(string message)
+        {
+            string result = "";
+            foreach (var sign in message.ToUpper())
+            {
+                if (keyArray.Contains(sign))
+                {
+                    int index = GetIndex(sign) - flow;
+
+                    if (index < 0)
+
+                    {
+                        index = keyArray.Length + index;
+                    }
+                    if (index < keyArray.Length)
+                    {
+                        result += keyArray[index];
+                    }
+                    else
+                    {
+                        result += keyArray[index - keyArray.Length];
+                    } 
+                }
+                else
+                {
+                    result += sign;
                 }
             }
             return result;
@@ -41,7 +81,7 @@ namespace SzyfrCezara
                 }
             }
 
-            throw new IndexOutOfRangeException();
+            throw new IndexOutOfRangeException("EEEE");
         }
 
         static void Main(string[] args)
@@ -51,6 +91,8 @@ namespace SzyfrCezara
 
             string codedMessage = Code(toCode);
             Console.WriteLine(codedMessage);
+            string decoded = Decode(codedMessage);
+            Console.WriteLine(decoded);
         }
     }
 }
