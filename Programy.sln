@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzyfrCezara", "SzyfrCezara\SzyfrCezara.csproj", "{E07BFE88-54F8-48F8-A196-D081769FBEDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzyfrVigenerea", "SzyfrVigenerea\SzyfrVigenerea.csproj", "{449A4F17-F568-4342-B180-139150781095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E07BFE88-54F8-48F8-A196-D081769FBEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E07BFE88-54F8-48F8-A196-D081769FBEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E07BFE88-54F8-48F8-A196-D081769FBEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449A4F17-F568-4342-B180-139150781095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449A4F17-F568-4342-B180-139150781095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449A4F17-F568-4342-B180-139150781095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449A4F17-F568-4342-B180-139150781095}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
