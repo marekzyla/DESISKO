@@ -10,12 +10,15 @@ namespace SzyfrCezara
     class Program
     {
         static char[] keyArray = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ".ToCharArray();
-
-       
+        
 
         static string Code(string message, int flow=3)
         {
+            if (flow>=keyArray.Length)
+            {
             flow = flow / keyArray.Length;
+
+            }
             string result = "";
             foreach (var sign in message.ToUpper())
             {
@@ -42,7 +45,11 @@ namespace SzyfrCezara
 
         static string Decode(string message,int flow=3)
         {
-            flow = flow / keyArray.Length;
+            if (flow >= keyArray.Length)
+            {
+                flow = flow / keyArray.Length;
+
+            }
 
             string result = "";
             foreach (var sign in message.ToUpper())
@@ -93,10 +100,10 @@ namespace SzyfrCezara
             Console.WriteLine("Wprowadź tekst");
             string toCode = Console.ReadLine();
             Console.WriteLine("Zaszyfrowane");
-            string codedMessage = Code(toCode,35);
+            string codedMessage = Code(toCode,3);
             Console.WriteLine(codedMessage);
             Console.WriteLine("Odszyfrowany ");
-            string decoded = Decode(codedMessage,35);
+            string decoded = Decode(codedMessage,3);
             Console.WriteLine(decoded);
         }
     }

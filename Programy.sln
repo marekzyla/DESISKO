@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzyfrCezara", "SzyfrCezara\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzyfrVigenerea", "SzyfrVigenerea\SzyfrVigenerea.csproj", "{449A4F17-F568-4342-B180-139150781095}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFair", "PlayFair\PlayFair.csproj", "{2E278474-22BA-47E0-A5D8-BF89D8623F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzyfrAfiniczny", "SzyfrAfiniczny\SzyfrAfiniczny.csproj", "{8FD46D4B-67EC-4BE2-AFD8-8FE080FB7700}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{449A4F17-F568-4342-B180-139150781095}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{449A4F17-F568-4342-B180-139150781095}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{449A4F17-F568-4342-B180-139150781095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E278474-22BA-47E0-A5D8-BF89D8623F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E278474-22BA-47E0-A5D8-BF89D8623F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E278474-22BA-47E0-A5D8-BF89D8623F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E278474-22BA-47E0-A5D8-BF89D8623F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FD46D4B-67EC-4BE2-AFD8-8FE080FB7700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FD46D4B-67EC-4BE2-AFD8-8FE080FB7700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FD46D4B-67EC-4BE2-AFD8-8FE080FB7700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FD46D4B-67EC-4BE2-AFD8-8FE080FB7700}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
