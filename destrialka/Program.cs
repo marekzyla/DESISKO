@@ -7,12 +7,18 @@ using System.Text;
 
 class Des
 {
-    static byte[] BitsToBytes(string[] coded)
+    static byte[] BitsToBytes(string coded)
     {
         var result = new byte[8];
-        for (int i = 0; i < coded.Length; i++)
+        for (int i = 0; i < coded.Length; i += 8)
         {
-            result[i] += Reconvert(coded[i]);
+            string g = "";
+            for (int j = i; j < i + 8; j++)
+            {
+                g += coded[j];
+            }
+            result[i] += Reconvert(g);
+
         }
         return result;
 
