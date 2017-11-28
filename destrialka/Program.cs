@@ -10,6 +10,7 @@ class Des
     static byte[] BitsToBytes(string coded)
     {
         var result = new byte[8];
+        int indexisko = 0;
         for (int i = 0; i < coded.Length; i += 8)
         {
             string g = "";
@@ -17,8 +18,8 @@ class Des
             {
                 g += coded[j];
             }
-            result[i] += Reconvert(g);
-
+            result[indexisko] += Reconvert(g);
+            indexisko++;
         }
         return result;
 
@@ -111,7 +112,7 @@ class Des
         byte[] key = new byte[des.Key.Length];
         Console.WriteLine("Podaj klucz:");
         string keyTest = Console.ReadLine();
-        key = ConvertToByte(keyTest);
+        key = BitsToBytes(keyTest);
 
         Console.WriteLine("=================");
         foreach (var item in key)
@@ -163,7 +164,7 @@ class Des
 
                     string test2 = Console.ReadLine();
                     byte[] toDecode = new byte[8];
-                    toDecode = ConvertToByte(test2);
+                    toDecode = BitsToBytes(test2);
 
                    //foreach (var item in toDecode)
                    //{
