@@ -84,21 +84,21 @@ class Des
     static void Main(string[] args)
     {
 
-        //TEST
-        var e = new byte[] { 2, 4, 5, 60 ,200,254,0,7};
-        foreach (var item in ByteToBits(e))
-        {
-            Console.WriteLine(item);
-        }
-        Console.ReadLine();
+        ////TEST
+        //var e = new byte[] { 2, 4, 5, 60 ,200,254,0,7};
+        //foreach (var item in ByteToBits(e))
+        //{
+        //    Console.WriteLine(item);
+        //}
+        //Console.ReadLine();
 
-        Console.WriteLine();
-        foreach (var item in BitsToBytes(ByteToBits(e))
-        )
-        {
-            Console.Write($"{item} ");
-        }
-        Console.ReadLine();
+        //Console.WriteLine();
+        //foreach (var item in BitsToBytes(ByteToBits(e))
+        //)
+        //{
+        //    Console.Write($"{item} ");
+        //}
+        //Console.ReadLine();
 
 
         var des = new DESCryptoServiceProvider();
