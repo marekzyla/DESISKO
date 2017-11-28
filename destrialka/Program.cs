@@ -130,16 +130,17 @@ class Des
 
                     Console.WriteLine();
                     Console.WriteLine("Zaszyfrowane:");
-
+                    temp = test;
                     foreach (var item in ByteToBits(coded))
                     {
                         Console.Write(item);
                     }
-                    Console.WriteLine("+++ {0}", coded.Length);
+                    //Console.WriteLine(" {0}", coded.Length);
                     break;
 
                 case 2:
                     Console.WriteLine();
+
                     Console.WriteLine("Podaj słowo do odszyfrowania:");
 
                     string test2 = Console.ReadLine();
@@ -149,7 +150,7 @@ class Des
 
                     byte[] decoded = DesDecryptOneBlock(toDecode, key);
 
-                    foreach (var item in ByteToBits(decoded))
+                    foreach (var item in temp)
                     {
                         Console.Write(item);
                     }
@@ -194,4 +195,5 @@ class Des
 
         return enc;
     }
+    static byte[] temp = new byte[8];
 }
