@@ -93,7 +93,6 @@ class Des
         Console.WriteLine("Podaj klucz:");
         string keyTest = Console.ReadLine();
         key = BitsToBytes(keyTest);
-
         Console.WriteLine("=================");
         foreach (var item in key)
         {
@@ -135,7 +134,6 @@ class Des
                     {
                         Console.Write(item);
                     }
-                    Console.WriteLine("+++ {0}", coded.Length);
                     break;
 
                 case 2:
@@ -145,10 +143,8 @@ class Des
                     string test2 = Console.ReadLine();
                     byte[] toDecode = new byte[8];
                     toDecode = BitsToBytes(test2);
-
-
+                    
                     byte[] decoded = DesDecryptOneBlock(toDecode, key);
-
                     foreach (var item in ByteToBits(decoded))
                     {
                         Console.Write(item);
@@ -194,4 +190,5 @@ class Des
 
         return enc;
     }
+
 }
