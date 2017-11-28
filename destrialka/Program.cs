@@ -166,15 +166,16 @@ class Des
                     byte[] toDecode = new byte[8];
                     toDecode = ConvertToByte(test2);
 
-                   //foreach (var item in toDecode)
-                   //{
-                   //    Console.Write(item + " ");
-                   //}
+                    foreach (var item in toDecode)
+                    {
+                        Console.Write(item + " ");
+                    }
                     //for (int i = 0; i < 8; i++)
                     //{
                     //    toDecode[i] = byte.Parse(Console.ReadKey().KeyChar.ToString());
                     //}
 
+<<<<<<< HEAD
                     //Decode(toDecode, des, key);
                     byte[] decoded = DesDecryptOneBlock(toDecode, key);
 
@@ -182,6 +183,9 @@ class Des
                     {
                         Console.Write(item);
                     }
+=======
+                    Decode(toDecode, des, key);
+>>>>>>> parent of 25bc7e5... DESISKO v3
 
                     //Console.WriteLine();
                     //Console.WriteLine("Odszyfrowane");
@@ -269,22 +273,6 @@ class Des
         Console.WriteLine("Decoded");
         Console.WriteLine(text);
         Console.WriteLine();
-    }
-
-    public static byte[] DesDecryptOneBlock(byte[] plainText, byte[] key)
-    {
-
-        DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-
-        des.KeySize = 64;
-        des.Key = key;
-        des.Padding = PaddingMode.None;
-
-        ICryptoTransform ic = des.CreateDecryptor();
-
-        byte[] enc = ic.TransformFinalBlock(plainText, 0, 8);
-
-        return enc;
     }
 
     public static byte[] DesEncryptOneBlock(byte[] plainText, byte[] key)
