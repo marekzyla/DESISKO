@@ -15,11 +15,13 @@ namespace SzyfrAfiniczny
 
         static void Main(string[] args)
         {
+
             char choice;
             do
             {
                 Console.WriteLine("\n1: Code \n2: Decode\nELSE: exit\n");
                 choice = Console.ReadKey().KeyChar;
+                Console.WriteLine("\n\n\n");
                 switch (choice)
                 {
                     case '1':
@@ -32,30 +34,52 @@ namespace SzyfrAfiniczny
             } while (choice == '1' || choice == '2');
         }
 
+        static (int a, int b) EnterKeys()
+        {
+            Console.WriteLine("Enter KEYS");
+            int a;
+            Console.WriteLine("ENTER [a] ->");
+            do
+            {
+                a = int.Parse(Console.ReadLine());
+                if (!IsRelativelyPrime(a, helper.Length))
+                {
+                    Console.WriteLine(
+                        "NOT AWAIABLE SINCE IT HAS MORE THAN ONE SHARED DIVIDERS WITH {0} (alphabet size)",
+                        helper.Length);
+                }
+            } while (!IsRelativelyPrime(a, helper.Length));
+            Console.WriteLine("ENTER [b] ->");
+            int b = int.Parse(Console.ReadLine());
+            return (a, b);
+        }
+
         private static void Decode()
         {
             Console.WriteLine("Enter TExt to decode");
             string text = Console.ReadLine().ToUpper();
-            //string text = "XZI";
-            Console.WriteLine("Enter KEYS");
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
-            //int a = 7;
-            //int b = 5;
+           
+            var keys = EnterKeys();
             string result = "";
 
-            foreach (var textSign in text)
+            for (int i = 0; i < text.Length; i++)
             {
-                if (helper.Contains(textSign))
+                if (helper.Contains(text[i]))
                 {
-                    int letterIndex = GetIndex(textSign);
-                    var d = ((15 * (letterIndex - b)) % helper.Length);
-                    result += helper[(int) d];
+                    int indexI = GetIndex(text[i]);
+                    int letterIndex = GetIndexToDecode(keys.a);
+                    if (indexI-keys.b<0)
+
+                    {
+                        indexI += helper.Length;
+                    }
+                    var d = ((letterIndex * (indexI- keys.b)) % helper.Length);
+                    result += helper[d]; 
                 }
 
                 else
                 {
-                    result += textSign;
+                    result += text[i];
                 }
             }
             Console.WriteLine(result);
@@ -65,10 +89,7 @@ namespace SzyfrAfiniczny
         {
             Console.WriteLine("Enter Text:");
             string text = Console.ReadLine().ToUpper();
-            Console.WriteLine("Enter KEYS:");
-
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
+            var keys = EnterKeys();
 
             string result = "";
 
@@ -76,7 +97,7 @@ namespace SzyfrAfiniczny
             {
                 if (helper.Contains(textSign))
                 {
-                    int index = GetIndex(textSign) * a + b % helper.Length;
+                    int index = GetIndex(textSign) * keys.a + keys.b % helper.Length;
                     result += helper[index % helper.Length];
                 }
                 else
@@ -97,6 +118,30 @@ namespace SzyfrAfiniczny
                 }
             }
             throw new Exception("ENCODING ERROR, Try using only Polish letters");
+        }
+
+        static int GetIndexToDecode(int a)
+        {
+            for (int i = 0; i < helper.Length; i++)
+            {
+                if ((a * i) % helper.Length == 1)
+                {
+                    return i;
+                }
+            }
+            throw new Exception("Decode ERROR");
+        }
+
+        static bool IsRelativelyPrime(int a, int b)
+        {
+            for (int i = 2; i <= Math.Min(a, b); i++)
+            {
+                if (a % i == 0 && b % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
