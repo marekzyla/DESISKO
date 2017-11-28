@@ -146,7 +146,7 @@ class Des
 
                     foreach (var item in ByteToBits(coded))
                     {
-                        Console.Write(item + " ");
+                        Console.Write(item);
                     }
                     Console.WriteLine("+++ {0}", coded.Length);
                     break;
@@ -155,17 +155,24 @@ class Des
                     Console.WriteLine();
                     Console.WriteLine("Podaj słowo do odszyfrowania:");
 
-                    byte[] toDecode = new byte[des.LegalBlockSizes.Length];
-                    for (int i = 0; i < des.LegalBlockSizes.Length; i++)
+                    string test2 = Console.ReadLine();
+                    byte[] toDecode = new byte[8];
+                    toDecode = ConvertToByte(test2);
+
+                    foreach (var item in toDecode)
                     {
-                        toDecode[i] = byte.Parse(Console.ReadKey().KeyChar.ToString());
+                        Console.Write(item + " ");
                     }
+                    //for (int i = 0; i < 8; i++)
+                    //{
+                    //    toDecode[i] = byte.Parse(Console.ReadKey().KeyChar.ToString());
+                    //}
 
-                    string decoded = Decode(toDecode, key, des.IV);
+                    Decode(toDecode, des, key);
 
-                    Console.WriteLine();
-                    Console.WriteLine("Odszyfrowane");
-                    Console.WriteLine(decoded);
+                    //Console.WriteLine();
+                    //Console.WriteLine("Odszyfrowane");
+                    //Console.WriteLine(decoded);
                     break;
 
                 default:
@@ -202,37 +209,53 @@ class Des
     }
 
 
-    static string Decode(byte[] cipherText, byte[] Key, byte[] IV)
+    //static string Decode(byte[] cipherText, byte[] Key, byte[] IV)
+    //{
+    //    if (cipherText == null || cipherText.Length <= 0)
+    //        throw new ArgumentNullException("cipherText");
+    //    if (Key == null || Key.Length <= 0)
+    //        throw new ArgumentNullException("Key");
+    //    if (IV == null || IV.Length <= 0)
+    //        throw new ArgumentNullException("Key");
+
+    //    string decoded = null;
+
+    //    using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
+    //    {
+    //        des.KeySize = 64;
+    //        des.Key = Key;
+    //        des.IV = IV;
+
+    //        ICryptoTransform decryptor = des.CreateDecryptor(des.Key, des.IV);
+
+    //        using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+    //        {
+    //            using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+    //            {
+    //                using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+    //                {
+    //                    decoded = srDecrypt.ReadToEnd();
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    return decoded;
+    //}
+
+    static void Decode(byte[] coded, DESCryptoServiceProvider provider, byte[] key)
     {
-        if (cipherText == null || cipherText.Length <= 0)
-            throw new ArgumentNullException("cipherText");
-        if (Key == null || Key.Length <= 0)
-            throw new ArgumentNullException("Key");
-        if (IV == null || IV.Length <= 0)
-            throw new ArgumentNullException("Key");
-
-        string decoded = null;
-
-        using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
+        var decryptor = provider.CreateDecryptor(key, provider.IV);
+        var memoryStream = new MemoryStream(coded);
+        var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+        var text = "";
+        using (var streamReader = new StreamReader(cryptoStream))
         {
-            des.Key = Key;
-            des.IV = IV;
-
-            ICryptoTransform decryptor = des.CreateDecryptor(des.Key, des.IV);
-
-            using (MemoryStream msDecrypt = new MemoryStream(cipherText))
-            {
-                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                {
-                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                    {
-                        decoded = srDecrypt.ReadToEnd();
-                    }
-                }
-            }
+            text = streamReader.ReadToEnd();
         }
-
-        return decoded;
+        Console.WriteLine("Decoded");
+        Console.WriteLine(text);
+        Console.WriteLine();
     }
 
     public static byte[] DesEncryptOneBlock(byte[] plainText, byte[] key)
@@ -244,7 +267,6 @@ class Des
         // The msb of each byte is a parity bit, so the key length is actually 56 bits.
         des.KeySize = 64;
         des.Key = key;
-        des.Mode = CipherMode.ECB;
         des.Padding = PaddingMode.None;
 
         ICryptoTransform ic = des.CreateEncryptor();
