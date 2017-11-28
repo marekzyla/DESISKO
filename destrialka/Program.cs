@@ -7,6 +7,8 @@ using System.Text;
 
 class Des
 {
+    // 1001001010101110011000011111110101011101001100001001010111110101
+
     static byte[] BitsToBytes(string coded)
     {
         var result = new byte[8];
